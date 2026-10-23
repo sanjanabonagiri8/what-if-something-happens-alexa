@@ -1,0 +1,519 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>What If Something Happens to Me</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF9F5; --card:#FFFFFF; --ink:#26261F; --ink-soft:#5B5A50;
+  --line:#E7E3D8; --teal:#1D4E52; --teal-deep:#123336;
+  --coral:#D9553F; --coral-soft:#FBE6E1;
+  --green:#2E7D5B; --green-soft:#E4F2EB;
+  --gold:#B98A2E; --gold-soft:#FBF1DD;
+  --radius:20px; --safe-top:0px; --safe-bottom:0px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#15181A; --card:#1E2224; --ink:#F1F0EA; --ink-soft:#AFAEA4; --line:#333733; --teal:#4C9AA0; --teal-deep:#2E6469; --coral:#E4735F; --coral-soft:#3A2420; --green:#5CB98D; --green-soft:#1E332A; --gold:#D9AC55; --gold-soft:#332A17; color-scheme:dark; }
+}
+:root[data-theme="dark"]{ color-scheme:dark; --bg:#15181A; --card:#1E2224; --ink:#F1F0EA; --ink-soft:#AFAEA4; --line:#333733; --teal:#4C9AA0; --teal-deep:#2E6469; --coral:#E4735F; --coral-soft:#3A2420; --green:#5CB98D; --green-soft:#1E332A; --gold:#D9AC55; --gold-soft:#332A17; }
+*{box-sizing:border-box;}
+html{scroll-padding-top:var(--safe-top);} html,body{height:100%;}
+.skip-link{position:absolute;left:12px;top:-100px;z-index:100;background:var(--card);color:var(--ink);padding:12px 16px;border:3px solid var(--teal);border-radius:10px;font-weight:800;}
+.skip-link:focus{top:12px;}
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important;}
+h1:focus{outline:3px solid var(--teal);outline-offset:5px;border-radius:4px;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Figtree',system-ui,-apple-system,sans-serif;padding-top:var(--safe-top);padding-bottom:var(--safe-bottom);min-height:100%;}
+.app{max-width:480px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;position:relative;}
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;align-items:center;gap:12px;padding:16px 20px 8px;}
+.backbtn{border:1px solid var(--line);background:var(--card);width:40px;height:40px;border-radius:12px;font-size:18px;color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.backbtn:focus-visible,button:focus-visible{outline:3px solid var(--teal);outline-offset:2px;}
+.backbtn[hidden]{visibility:hidden;}
+.topbar .brand{font-size:14px;color:var(--ink-soft);font-weight:600;letter-spacing:.02em;}
+main{flex:1;padding:8px 20px 32px;}
+.screen{display:none;animation:fade .25s ease;}
+.screen.active{display:block;}
+.screen.urgent{background:linear-gradient(180deg,var(--coral-soft),var(--bg) 140px);margin:-8px -20px 0;padding:24px 20px 0;}
+@keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+h1{font-size:24px;line-height:1.2;margin:6px 0 6px;font-weight:800;}
+h1.emg{color:var(--coral);}
+.sub{color:var(--ink-soft);font-size:16px;line-height:1.5;margin:0 0 20px;}
+.sub.strong{color:var(--ink);font-weight:700;}
+.desc{color:var(--ink-soft);font-size:14.5px;line-height:1.55;margin:14px 0;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin-bottom:14px;}
+.bigbtn{width:100%;display:flex;align-items:center;gap:14px;background:var(--card);border:1.5px solid var(--line);border-radius:var(--radius);padding:18px;font-size:16px;font-weight:700;color:var(--ink);cursor:pointer;margin-bottom:12px;text-align:left;}
+.bigbtn:active{transform:scale(.98);}
+.bigbtn:hover{border-color:var(--teal);}
+.bigbtn .em{font-size:22px;flex-shrink:0;}
+.primary{width:100%;border:none;border-radius:16px;padding:18px;font-size:17px;font-weight:700;cursor:pointer;background:var(--teal);color:#fff;margin-bottom:12px;}
+.primary:active{opacity:.85;}
+.primary.emg{background:var(--coral);font-size:19px;padding:22px;}
+.secondary{width:100%;border:1.5px solid var(--line);background:transparent;border-radius:16px;padding:16px;font-size:15.5px;font-weight:600;color:var(--ink);cursor:pointer;margin-bottom:12px;}
+.footer-note{text-align:center;color:var(--ink-soft);font-size:12.5px;margin-top:24px;line-height:1.6;}
+.review-card .row{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:13.5px;}
+.review-card .row:last-child{border-bottom:none;}
+.review-card .row .k{color:var(--ink-soft);flex-shrink:0;}
+.review-card .row .v{font-weight:700;text-align:right;}
+.msg-box{background:var(--teal-deep);color:#fff;border-radius:16px;padding:16px;font-size:14px;line-height:1.6;margin:14px 0;}
+.disclaimer{background:var(--coral-soft);border:1px solid var(--coral);border-radius:12px;padding:10px 14px;font-size:12px;color:var(--ink);text-align:center;margin-bottom:16px;font-weight:700;}
+.control-note{background:var(--green-soft);color:var(--green);border-radius:12px;padding:10px 14px;font-size:13px;text-align:center;font-weight:700;margin-bottom:16px;}
+.label-note{background:var(--gold-soft);border:1px solid var(--gold);border-radius:12px;padding:10px 14px;font-size:12.5px;color:var(--ink);margin-bottom:14px;font-weight:600;text-align:center;}
+.dispatch{background:var(--teal-deep);color:#fff;border-radius:var(--radius);padding:22px;margin-bottom:16px;}
+.dispatch .status{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);padding:6px 14px;border-radius:100px;font-size:12px;font-weight:700;margin-bottom:14px;}
+.dispatch h3{font-size:13px;text-transform:uppercase;letter-spacing:.04em;opacity:.7;margin:14px 0 4px;}
+.dispatch p{margin:0 0 4px;font-size:14px;}
+.dispatch .ref{text-align:center;font-size:13px;opacity:.85;margin-top:14px;}
+.received{display:flex;align-items:center;gap:10px;background:var(--green-soft);color:var(--green);border-radius:14px;padding:14px;font-weight:700;font-size:14px;margin-bottom:14px;}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--green);flex-shrink:0;}
+.spin{width:44px;height:44px;border:4px solid var(--line);border-top-color:var(--teal);border-radius:50%;animation:spin 1s linear infinite;margin:40px auto;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.center-msg{text-align:center;padding:30px 0;}
+.child .instr{font-size:20px;font-weight:800;line-height:1.5;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start;}
+.child .instr .num{background:var(--teal);color:#fff;border-radius:50%;width:30px;height:30px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:15px;}
+.final{text-align:center;padding:26px 0 8px;}
+.final .big{font-size:19px;font-weight:800;line-height:1.5;margin:4px 0;}
+.check{width:56px;height:56px;border-radius:50%;background:var(--green-soft);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 16px;}
+label.flabel{display:block;font-size:13px;font-weight:700;color:var(--ink-soft);margin:14px 0 6px;}
+textarea{width:100%;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:12px;padding:12px 14px;font-size:15px;font-family:inherit;min-height:80px;resize:vertical;}
+.person-row{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);}
+.person-row:last-child{border-bottom:none;}
+.person-row .em{font-size:22px;}
+.person-row .pn{font-weight:700;font-size:15px;flex:1;}
+.person-row .pn small{display:block;font-weight:500;color:var(--ink-soft);font-size:12.5px;}
+.bullet-list{margin:0;padding:0;list-style:none;}
+.bullet-list li{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14.5px;}
+.bullet-list li:last-child{border-bottom:none;}
+.demo-banner{background:var(--teal-deep);color:#fff;padding:10px 20px;font-size:13px;line-height:1.5;text-align:center;}
+.future-note{border:1px dashed var(--line);border-radius:14px;padding:12px 14px;font-size:12.5px;color:var(--ink-soft);margin-top:6px;}
+
+.voice-btn{width:100%;border:2px solid #6B4EFF;background:var(--card);color:var(--ink);border-radius:18px;padding:19px;font-size:17px;font-weight:800;cursor:pointer;margin:12px 0 6px;}
+.voice-btn:hover{border-color:#4B31D1;}
+.voice-btn.listening{background:#F1EDFF;border-color:#6B4EFF;}
+.voice-btn:disabled{cursor:wait;opacity:.95;}
+.voice-status{text-align:center;color:var(--ink-soft);font-size:13px;line-height:1.45;min-height:20px;margin:4px 4px 10px;}
+.mic{width:60px;height:60px;border-radius:50%;background:var(--coral-soft);color:var(--coral);display:flex;align-items:center;justify-content:center;font-size:26px;margin:12px auto;}
+.canresp{width:100%;border:2px solid var(--coral);background:var(--coral-soft);border-radius:16px;padding:18px;font-size:16px;font-weight:800;color:var(--coral);cursor:pointer;margin-top:6px;}
+.quote{border-left:4px solid var(--teal);background:var(--bg);padding:10px 14px;font-size:14px;font-style:italic;color:var(--ink-soft);border-radius:0 10px 10px 0;margin:12px 0;}
+
+.alexa-bar{display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,#172B4D,#2D4A73);color:#fff;border-radius:18px;padding:14px 16px;margin:0 0 16px;}
+.alexa-orb{width:42px;height:42px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff 0 8%,#8BE9FF 22%,#5B6CFF 55%,#B85CFF 100%);box-shadow:0 0 18px rgba(139,233,255,.35);flex-shrink:0;}
+.alexa-bar .alx-title{font-weight:800;font-size:14px;}
+.alexa-bar .alx-sub{font-size:12px;opacity:.82;margin-top:2px;}
+.voice-card{background:#F1F6FF;border:1px solid #D8E5FF;border-radius:16px;padding:14px;margin:12px 0;}
+.voice-status{font-size:13px;font-weight:700;color:#294B7A;margin-bottom:8px;}
+.voice-btn{width:100%;border:1px solid #BFD1F3;background:#fff;border-radius:14px;padding:13px;font-weight:700;color:#294B7A;cursor:pointer;}
+.voice-btn.listening{background:#E9E3FF;border-color:#8B72D8;color:#5A43A0;}
+.alexa-note{font-size:11.5px;color:var(--ink-soft);margin-top:8px;line-height:1.45;}
+
+/* Accessibility improvements: stronger focus, scalable text, and clear preference cards. */
+button, textarea, select { font: inherit; }
+button, select, textarea { touch-action: manipulation; }
+button:focus-visible, textarea:focus-visible, select:focus-visible, input:focus-visible, a:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+select { width:100%; border:1.5px solid var(--line); background:var(--bg); color:var(--ink); border-radius:12px; padding:13px; font-size:16px; min-height:48px; }
+.pref-help { font-size:13px; color:var(--ink-soft); line-height:1.5; }
+.pref-summary { border:1px solid var(--line); border-radius:12px; padding:12px 14px; background:var(--card); margin:12px 0; font-size:14px; line-height:1.5; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration:0.01ms !important; animation-iteration-count:1 !important; scroll-behavior:auto !important; } }
+</style>
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="app">
+  <div class="demo-banner" role="region" aria-label="Demo notice"><strong>DEMO — SIMULATED.</strong> This prototype does not contact anyone. <strong>Real emergency? Call your local emergency number now (911 in the US, 112 in the EU).</strong></div>
+  <div class="topbar">
+    <button class="backbtn" id="backBtn" aria-label="Go back">←</button>
+    <span class="brand">Assistant · Emergency Guidance</span>
+  </div>
+  <main id="main" tabindex="-1">
+    <p id="screenAnnouncement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+
+    <!-- WELCOME -->
+    <section class="screen" data-screen="welcome">
+      <h1 tabindex="-1">What If Something Happens to Me?</h1>
+      <p class="sub strong">You don't have to explain everything.</p>
+      <p class="desc">Your emergency profile can keep important household information ready before an emergency happens.</p>
+
+      <div class="card" aria-labelledby="accessCheckTitle">
+        <h2 id="accessCheckTitle" style="font-size:18px;margin:0 0 8px;">Quick accessibility check</h2>
+        <p class="desc" style="margin:0 0 12px;">Check the options that apply to you. You do not need to turn on every setting to use this app.</p>
+        <div style="display:grid;gap:12px;">
+          <label style="display:flex;align-items:flex-start;gap:10px;line-height:1.45;">
+            <input type="checkbox" style="width:20px;height:20px;flex:0 0 auto;margin-top:2px;">
+            <span><strong>Keyboard:</strong> I can move between controls using Tab and activate buttons with Enter or Space.</span>
+          </label>
+          <label style="display:flex;align-items:flex-start;gap:10px;line-height:1.45;">
+            <input type="checkbox" style="width:20px;height:20px;flex:0 0 auto;margin-top:2px;">
+            <span><strong>Screen reader:</strong> If I use one, my screen reader is turned on in my device settings.</span>
+          </label>
+          <label style="display:flex;align-items:flex-start;gap:10px;line-height:1.45;">
+            <input type="checkbox" style="width:20px;height:20px;flex:0 0 auto;margin-top:2px;">
+            <span><strong>Voice:</strong> If I want to speak, Chrome has permission to use my microphone.</span>
+          </label>
+          <label style="display:flex;align-items:flex-start;gap:10px;line-height:1.45;">
+            <input type="checkbox" style="width:20px;height:20px;flex:0 0 auto;margin-top:2px;">
+            <span><strong>Typing and display:</strong> I can enter text, and the words are comfortable for me to read.</span>
+          </label>
+          <label style="display:flex;align-items:flex-start;gap:10px;line-height:1.45;">
+            <input type="checkbox" style="width:20px;height:20px;flex:0 0 auto;margin-top:2px;">
+            <span><strong>Assistive devices:</strong> If I rely on a Braille display, switch, wearable, or support person, my usual setup is ready.</span>
+          </label>
+        </div>
+        <p class="pref-help" style="margin:12px 0 0;">This is a self-check, not an automatic test. It cannot verify device settings or contact emergency services. You can continue even if an item does not apply or is not ready.</p>
+      </div>
+
+      <button class="primary emg" onclick="go('emergencyPrep')">🚨 EMERGENCY MODE</button>
+      <button class="secondary" onclick="go('profile')">My Emergency Profile</button>
+      <button class="secondary" onclick="go('accessibility')">♿ Accessibility Preferences</button>
+      <p class="footer-note">AI informs. AI organizes. AI guides. Humans decide.</p>
+    </section>
+
+    <!-- ACCESSIBILITY PREFERENCES -->
+    <section class="screen" data-screen="accessibility">
+      <h1 tabindex="-1">Accessibility Preferences</h1>
+      <p class="sub">Choose how you prefer to communicate and receive information. You can change these choices at any time.</p>
+      <div class="card">
+        <label class="flabel" for="inputPreference">How do you want to communicate?</label>
+        <select id="inputPreference" aria-describedby="inputPrefHelp">
+          <option value="Voice">Voice</option>
+          <option value="Typing">Typing</option>
+          <option value="Screen reader and keyboard">Screen reader and keyboard</option>
+          <option value="Braille display with compatible device">Braille display with compatible device</option>
+          <option value="Switch or other assistive input">Switch or other assistive input</option>
+          <option value="Trusted person support">Support from a trusted person</option>
+        </select>
+        <p id="inputPrefHelp" class="pref-help">Choose the option that best fits you. This saves your preference; it does not turn on a screen reader or connect assistive hardware. You can still use any available option on the emergency screen.</p>
+        <label class="flabel" for="outputPreference">How do you prefer to receive information?</label>
+        <select id="outputPreference" aria-describedby="outputPrefHelp">
+          <option value="On-screen text">On-screen text</option>
+          <option value="Spoken instructions">Spoken instructions</option>
+          <option value="Screen reader">Screen reader</option>
+          <option value="Braille display with compatible device">Braille display with compatible device</option>
+          <option value="Vibration on a compatible wearable">Vibration on a compatible wearable</option>
+          <option value="Help from a trusted person">Help from a trusted person</option>
+        </select>
+        <p id="outputPrefHelp" class="pref-help">Screen readers must be enabled in your device settings. Braille displays, switches, and wearables need compatible hardware and software. This prototype records your choices but does not directly control those devices.</p>
+        <div class="pref-summary"><strong>Keyboard tip:</strong> Press Tab to move through controls. Press Enter or Space to activate a focused button. A visible outline shows which control is selected.</div>
+        <label class="flabel" for="accessNotes">Anything else responders should know? (optional)</label>
+        <textarea id="accessNotes" rows="3" placeholder="For example: Please communicate in writing, or I use tactile communication."></textarea>
+      </div>
+      <div class="pref-summary" id="accessibilitySaved" aria-live="polite">Your preferences have not been saved yet.</div>
+      <button class="primary" onclick="saveAccessibilityPreferences()">Save preferences</button>
+      <button class="secondary" onclick="go('welcome')">Back to home</button>
+    </section>
+
+    <!-- HOUSEHOLD EMERGENCY PROFILE -->
+    <section class="screen" data-screen="profile">
+      <h1 tabindex="-1">My Emergency Profile</h1>
+      <p class="sub">Prepared before an emergency, so you don't have to explain it during one.</p>
+      <div class="card">
+        <p class="desc" style="margin-top:0;font-weight:700;color:var(--ink);">Household</p>
+        <div class="person-row"><span class="em">👤</span><span class="pn">Parent<small>Adult · emergency profile available</small></span></div>
+        <div class="person-row"><span class="em">👧</span><span class="pn">Child<small>Deaf / visual communication preferred</small></span></div>
+        <div class="person-row"><span class="em">🐕</span><span class="pn">Pet<small>Dog</small></span></div>
+      </div>
+      <div class="card">
+        <p class="desc" style="margin-top:0;font-weight:700;color:var(--ink);">Emergency address</p>
+        <p style="margin:0;font-size:15px;">Example address from profile (not confirmed)</p>
+      </div>
+      <div class="card">
+        <p class="desc" style="margin-top:0;font-weight:700;color:var(--ink);">Medical Information Available</p>
+        <ul class="bullet-list">
+          <li>🚫 Allergies: Penicillin</li>
+          <li>💊 Current medications: Example medication</li>
+          <li>❤️ Relevant medical condition: Example condition</li>
+          <li>🩸 Blood type: If provided</li>
+        </ul>
+        <div class="label-note">Example data provided by household — not an AI diagnosis, not a medical record</div>
+      </div>
+      <div class="control-note">You control what information is stored and shared.</div>
+    </section>
+
+    <!-- EMERGENCY PREP -->
+    <section class="screen urgent" data-screen="emergencyPrep">
+      <h1 tabindex="-1" class="emg">Emergency Mode</h1>
+      <p class="sub strong">You don't have to explain everything.</p>
+      <div class="card">
+        <p style="font-weight:700;margin:0 0 10px;">Emergency alert is being prepared…</p>
+        <p class="desc" style="margin:0 0 10px;">Using information already available from the household profile:</p>
+        <ul class="bullet-list">
+          <li>📍 Emergency location</li>
+          <li>👤 Adult household member</li>
+          <li>👧 Child present</li>
+          <li>♿ Visual communication preferred</li>
+          <li>🏥 Medical information available</li>
+        </ul>
+      </div>
+      <button class="primary emg" onclick="go('alert')">CONTINUE TO EMERGENCY ALERT</button>
+    </section>
+
+    <!-- EMERGENCY ALERT -->
+    <section class="screen urgent" data-screen="alert">
+      <h1 tabindex="-1" class="emg">🚨 Emergency Alert</h1>
+      <div class="pref-summary" id="alertAccessibilitySummary" aria-live="polite">Accessibility preferences: not set.</div>
+      <div class="card review-card">
+        <div class="row"><span class="k">Person needing help</span><span class="v">Adult household member</span></div>
+        <div class="row"><span class="k">Activated by</span><span class="v">Child</span></div>
+        <div class="row"><span class="k">Location</span><span class="v">Example address from profile (not confirmed)</span></div>
+        <div class="row"><span class="k">Household</span><span class="v">Adult, Child, Dog</span></div>
+        <div class="row"><span class="k">Communication needs</span><span class="v">Child uses visual communication</span></div>
+        <div class="row"><span class="k">Medical info</span><span class="v">Allergies, medications, history</span></div>
+      </div>
+      <div class="alexa-bar"><div class="alexa-orb" aria-hidden="true"></div><div><div class="alx-title">Simulated Alexa+-style assistant</div><div class="alx-sub">Demo only, not real Alexa+. You can speak (if your browser allows), type, or say you cannot respond.</div></div></div>
+      <button id="voiceBtn" class="voice-btn" onclick="startAlexaVoice()">🎙️ Tell the assistant what happened</button>
+      <div id="voiceStatus" class="voice-status" aria-live="polite">Tap the button, allow microphone access, then speak. If voice does not work here, typing below works the same way.</div>
+       <p style="font-weight:700;margin:18px 0 4px;">What happened?</p>
+      <p class="desc" style="margin-top:0;">"If you can, tell me what happened."</p>
+      <div class="mic">🎤</div>
+      <label class="flabel" for="descText">Describe what happened, if you can</label>
+      <textarea id="descText" aria-label="Describe what happened" placeholder='Type here if you can…'></textarea>
+      <button class="secondary" style="margin-top:10px;" onclick="go('alert')">📷 Add visual information</button>
+      <button class="primary" style="margin-top:4px;" onclick="analyze(false)">Share what I typed</button>
+      <button class="canresp" onclick="analyze(true)">I CAN'T RESPOND</button>
+    </section>
+
+    <!-- AI ORGANIZED -->
+    <section class="screen" data-screen="organize">
+      <h1 tabindex="-1">AI-organized information</h1>
+      <div class="card">
+        <p style="font-weight:700;margin:0 0 8px;">Possible emergency situation</p>
+        <div class="quote" id="userQuote"></div>
+        <p style="font-weight:700;margin:16px 0 8px;">Information available from household profile</p>
+        <ul class="bullet-list">
+          <li>👤 Adult household member</li>
+          <li>🏥 Relevant medical information available</li>
+          <li>👧 Child present</li>
+          <li>♿ Visual communication preference</li>
+        </ul>
+      </div>
+      <div class="label-note">AI is organizing information provided by the user and household profile. It is not diagnosing the situation.</div>
+      <button class="primary" onclick="go('review')">Review before sharing</button>
+    </section>
+
+    <!-- HUMAN REVIEW -->
+    <section class="screen" data-screen="review">
+      <h1 tabindex="-1">Review Emergency Information</h1>
+      <p class="sub">Exactly what will be shared.</p>
+      <div class="card review-card" id="reviewCard"></div>
+      <div class="control-note">You remain in control.</div>
+      <button class="primary emg" onclick="sendInfo()">CONFIRM &amp; CONTINUE</button>
+      <button class="secondary" onclick="go('alert')">EDIT INFORMATION</button>
+    </section>
+
+    <!-- SENDING -->
+    <section class="screen" data-screen="sending">
+      <div class="center-msg">
+        <div class="spin"></div>
+        <p style="font-weight:700;font-size:17px;">Preparing information for a human responder…</p>
+      </div>
+    </section>
+
+    <!-- COMMUNICATION CENTER -->
+    <section class="screen" data-screen="center">
+      <h1 tabindex="-1">Simulated Emergency Communication Center</h1>
+      <p class="sub">Information prepared for a human responder</p>
+       <div class="alexa-bar"><div class="alexa-orb" aria-hidden="true"></div><div><div class="alx-title">Simulated Alexa+-style assistant</div><div class="alx-sub">Voice input helped capture the user-provided situation.</div></div></div>
+      <p class="disclaimer">SIMULATION — No real emergency service contacted</p>
+      <div class="dispatch">
+        <span class="status">NEW EMERGENCY</span>
+        <h3>Emergency</h3><p>Adult household member needs help. Condition not confirmed; see the reporter’s own words below.</p>
+        <h3>Location</h3><p>Example address from profile (not confirmed).</p>
+        <h3>People present</h3><p>Adult, Child</p>
+        <h3>Communication needs</h3><p>Child prefers/needs visual communication.</p>
+        <h3>Relevant medical information</h3><p>Allergies, medications, medical history (household-provided)</p>
+        <h3>Additional information</h3><p id="dispatchQuote">No additional information provided.</p>
+        <div class="ref">Demo reference (fictional): EMG-20481</div>
+      </div>
+      <div class="received"><span class="dot"></span> Information organized from the household profile and user-provided information.</div>
+      <button class="primary" onclick="go('child')">Continue</button>
+    </section>
+
+    <!-- CHILD MODE -->
+    <section class="screen child" data-screen="child">
+      <h1 tabindex="-1">❤️ You're okay. I'm going to help you.</h1>
+      <div class="instr"><span class="num">1</span> Stay somewhere safe.</div>
+      <div class="instr"><span class="num">2</span> Keep the device with you.</div>
+      <div class="instr"><span class="num">3</span> If you can, stay where a trusted adult can find you.</div>
+      <div class="instr"><span class="num">4</span> You do not have to explain everything.</div>
+      <button class="primary" onclick="go('done')">Continue</button>
+      <p class="footer-note">Designed to help communicate — not to make medical decisions.</p>
+    </section>
+
+    <!-- FINAL -->
+    <section class="screen" data-screen="done">
+      <div class="final">
+        <div class="check">✓</div>
+        <h1 tabindex="-1" style="text-align:center;">Emergency help shouldn't depend on your ability to explain what's happening.</h1>
+        <p class="desc">Prepare information before the emergency. Communicate what you can during it. Let human responders make the decisions.</p>
+      </div>
+      <button class="primary" onclick="resetAndHome()">Start Over</button>
+      <button class="secondary" onclick="go('profile')">View Emergency Profile</button>
+      <p class="footer-note">AI helps organize information. Human responders make emergency decisions.</p>
+      <div class="future-note">Future scenarios (fire, flood, accident, and more) are planned as additional profiles — this demo focuses on one to show the core idea clearly.</div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+let state={ description:'', inputPreference:'Voice', outputPreference:'On-screen text', accessNotes:'' };
+const hist=['welcome'];
+function show(id, moveFocus=false){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  const activeScreen = document.querySelector(`[data-screen="${id}"]`);
+  if (!activeScreen) return;
+  activeScreen.classList.add('active');
+  document.getElementById('backBtn').hidden = hist.length<=1;
+  window.scrollTo(0,0);
+  const heading = activeScreen.querySelector('h1');
+  const announcement = document.getElementById('screenAnnouncement');
+  if (heading && announcement) announcement.textContent = `Page: ${heading.textContent.trim()}`;
+  // Move keyboard focus to the new page heading after user navigation.
+  // This helps keyboard and screen-reader users understand that the page changed.
+  if (moveFocus && heading) requestAnimationFrame(()=>heading.focus());
+}
+function go(id){ hist.push(id); render(id); show(id, true); }
+document.getElementById('backBtn').addEventListener('click',()=>{
+  if(hist.length>1){ hist.pop(); render(hist[hist.length-1]); show(hist[hist.length-1], true); }
+});
+function esc(s){ return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+function saveAccessibilityPreferences(){
+  state.inputPreference=document.getElementById('inputPreference').value;
+  state.outputPreference=document.getElementById('outputPreference').value;
+  state.accessNotes=document.getElementById('accessNotes').value.trim();
+  const summary=`Saved for this demo: communicate via ${state.inputPreference}; receive information via ${state.outputPreference}.`;
+  document.getElementById('accessibilitySaved').textContent=summary;
+  document.getElementById('alertAccessibilitySummary').textContent=`Accessibility preferences — Input: ${state.inputPreference}. Output: ${state.outputPreference}.${state.accessNotes ? ' Additional note: '+state.accessNotes : ''}`;
+  // Preferences are only held in this page session; this prototype does not contact responders.
+  go('welcome');
+}
+
+function analyze(cantRespond){
+  state.description = cantRespond ? '' : document.getElementById('descText').value.trim();
+  go('organize');
+}
+function renderOrganize(){
+  document.getElementById('userQuote').textContent = state.description
+    ? `User-reported: "${state.description}"`
+    : 'No additional information provided — that\'s okay. The alert continues using the household profile.';
+}
+function renderReview(){
+  const rows=[
+    ['Person needing help','Adult household member'],
+    ['Activated by','Child'],
+    ['Location','Example address from profile (not confirmed)'],
+    ['People present','Adult, Child'],
+    ['Pet present','Yes (Dog)'],
+    ['Communication needs','Child uses visual communication'],
+    ['User communication preference', state.inputPreference],
+    ['Preferred information format', state.outputPreference],
+    ['Accessibility notes', state.accessNotes || 'Not provided'],
+    ['Medical information','Allergies, medications, medical history'],
+    ['Additional information', state.description || 'Not provided']
+  ];
+  document.getElementById('reviewCard').innerHTML = rows.map(r=>`<div class="row"><span class="k">${r[0]}</span><span class="v">${esc(r[1])}</span></div>`).join('');
+}
+function sendInfo(){ go('sending'); setTimeout(()=>go('center'),1300); }
+function renderCenter(){
+  document.getElementById('dispatchQuote').textContent = state.description ? `"${state.description}"` : 'No additional information provided.';
+}
+
+let alexaRecognition=null;
+let alexaStream=null;
+let alexaListeningRequested=false;
+
+async function startAlexaVoice(){
+  const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
+  const status=document.getElementById('voiceStatus');
+  const btn=document.getElementById('voiceBtn');
+
+  if(alexaListeningRequested && alexaRecognition){
+    alexaListeningRequested=false;
+    try{ alexaRecognition.stop(); }catch(err){}
+    status.textContent='Voice recording stopped. You can review or edit your words below.';
+    btn.classList.remove('listening');
+    btn.disabled=false;
+    btn.textContent='🎙️ Tell the assistant what happened';
+    return;
+  }
+
+  if(!SpeechRecognition){
+    status.textContent='Voice recognition is not supported in this browser. Please use Chrome or Edge, or type instead.';
+    return;
+  }
+
+  if(location.protocol === 'file:') {
+    status.textContent='Voice needs the page to run from localhost or HTTPS. Open this file through your local web server, then try again.';
+    return;
+  }
+
+  alexaRecognition=new SpeechRecognition();
+  alexaRecognition.lang='en-US';
+  alexaRecognition.interimResults=true;
+  alexaRecognition.continuous=true;
+  alexaRecognition.maxAlternatives=1;
+  alexaListeningRequested=true;
+
+  status.textContent='The assistant is listening. Speak naturally; tap Stop listening when you are finished.';
+  btn.classList.add('listening');
+  btn.textContent='⏹️ Stop listening';
+  btn.disabled=false;
+
+  alexaRecognition.onresult=(e)=>{
+    let transcript='';
+    for(let i=0;i<e.results.length;i++){
+      transcript += e.results[i][0].transcript;
+    }
+    document.getElementById('descText').value=transcript;
+    if(e.results.length && e.results[e.results.length-1].isFinal){
+      status.textContent='I heard you. Keep speaking, or tap Stop listening when finished.';
+    }
+  };
+
+  alexaRecognition.onerror=(e)=>{
+    let msg='I could not hear that. Please try again or type instead.';
+    if(e.error==='not-allowed'||e.error==='service-not-allowed') msg='Microphone permission was denied. Allow microphone access in Chrome, then try again.';
+    if(e.error==='no-speech') msg='I did not hear speech yet. Keep talking or tap Stop listening when finished.';
+    if(e.error==='audio-capture') msg='No microphone was detected. Check your microphone and try again.';
+    status.textContent=msg;
+    if(['not-allowed','service-not-allowed','audio-capture','network'].includes(e.error)){
+      alexaListeningRequested=false;
+    }
+  };
+
+  alexaRecognition.onend=()=>{
+    if(alexaListeningRequested){
+      // Chrome may end a recognition session after a short pause. Restart it
+      // while keeping the accumulated transcript and Stop button available.
+      status.textContent='Ready to keep listening. Continue speaking; tap Stop listening when finished.';
+      try{
+        alexaRecognition.start();
+        return;
+      }catch(err){
+        alexaListeningRequested=false;
+        status.textContent='Voice listening stopped. Your captured words are still available below.';
+      }
+    }
+    btn.classList.remove('listening');
+    btn.disabled=false;
+    btn.textContent='🎙️ Tell the assistant what happened';
+  };
+
+  try{
+    alexaRecognition.start();
+  }catch(err){
+    alexaListeningRequested=false;
+    btn.classList.remove('listening');
+    btn.disabled=false;
+    btn.textContent='🎙️ Tell the assistant what happened';
+    status.textContent='The assistant could not start listening. Please try again.';
+  }
+}
+
+function resetAndHome(){ state.description=''; hist.length=0; hist.push('welcome'); show('welcome', true); }
+
+function render(id){
+  if(id==='alert'){ const el=document.getElementById('alertAccessibilitySummary'); if(el) el.textContent=`Accessibility preferences — Input: ${state.inputPreference}; Output: ${state.outputPreference}.${state.accessNotes ? ' Additional note: '+state.accessNotes : ''}`; }
+  if(id==='organize') renderOrganize();
+  if(id==='review') renderReview();
+  if(id==='center') renderCenter();
+}
+show('welcome');
+</script>
+</body></html>
