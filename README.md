@@ -1,5 +1,5 @@
-What If Something Happens?
-Alexa Emergency Assistant 
+#### What If Something Happens?
+### Alexa Emergency Assistant 
 
 An accessibility-focused emergency preparedness prototype designed to help people prepare for unexpected emergencies through a simple, user-friendly interface.
 
