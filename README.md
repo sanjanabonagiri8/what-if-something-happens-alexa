@@ -4,6 +4,7 @@
 An accessibility-focused emergency preparedness prototype designed to help people prepare for unexpected emergencies through a simple, user-friendly interface.
 
 Live Demo
+
 Try the live demo
 https://what-if-emergency-assistant.lovable.app
 
