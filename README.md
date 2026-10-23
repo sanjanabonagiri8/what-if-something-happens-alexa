@@ -5,9 +5,7 @@ An accessibility-focused emergency preparedness prototype designed to help peopl
 
 Live Demo
 
-Try the live demo
-
-https://what-if-emergency-assistant.lovable.app
+Try the live demo: ## https://what-if-emergency-assistant.lovable.app
 
 ## Features
 
