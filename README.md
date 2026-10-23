@@ -1,5 +1,5 @@
 # What If Something Happens?
-### Alexa Emergency Assistant 
+## Alexa Emergency Assistant 
 
 An accessibility-focused emergency preparedness prototype designed to help people prepare for unexpected emergencies through a simple, user-friendly interface.
 
@@ -9,7 +9,7 @@ Try the live demo
 
 https://what-if-emergency-assistant.lovable.app
 
-### Features
+## Features
 
 - Accessibility-focused interface
 - Voice input support
